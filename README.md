@@ -90,6 +90,9 @@ Acesse http://localhost:4200 no seu navegador para ver a aplicação rodando.
 ### Detalhes
 ![pokedex-details](https://github.com/Cangels/Pokedex/assets/116917314/81736afb-0ae8-4654-a80b-1d9c8cacff71)
 
+### Battle (protótipo para a segunda página)
+![pokedex-battle](https://github.com/Cangels/Pokedex/assets/116917314/6fbca864-3211-4e8d-b4cc-ebbf41873f3f)
+
 
 ## Contato
 
