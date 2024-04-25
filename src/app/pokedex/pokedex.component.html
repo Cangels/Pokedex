@@ -1,26 +1,84 @@
-<main>
-  <img *ngIf="pokemonImage; else loading" [src]="pokemonImage" alt="pokemon" class="pokemon__image">
-  <ng-template #loading>Carregando...</ng-template>
-
-  <h1 class="pokemon__data">
-    <span class="pokemon__number">{{ pokemonNumber }}</span> -
-    <span class="pokemon__name">{{ pokemonName }}</span>
-  </h1>
-
-  <form (submit)="handleSearch(inputSearch.value)">
-    <input
-      #inputSearch
-      type="search"
-      class="input__search"
-      placeholder="Name or Number"
-      required
+<body>
+  <main>
+    <img
+      *ngIf="pokemonImage"
+      [src]="pokemonImage"
+      alt="pokemon"
+      class="pokemon__image"
     />
-  </form>
 
-  <div class="buttons">
-    <button (click)="navigate('prev')" class="button btn-prev">Prev &lt;</button>
-    <button (click)="navigate('next')" class="button btn-next">Next &gt;</button>
-  </div>
+    <div class="pokemon__data" [ngClass]="{ error: !pokemonImage }">
+      <span class="pokemon__number">{{ pokemonNumber }}</span> -
+      <span class="pokemon__name">{{ pokemonName }}</span>
+    </div>
 
-  <img src="assets/images/pokedex.png" alt="pokedex" class="pokedex">
-</main>
+    <div *ngIf="loading" class="loading">Loading...</div>
+
+    <form (submit)="handleSearch(); $event.preventDefault()">
+      <input
+        [(ngModel)]="searchTerm"
+        name="search"
+        type="search"
+        class="input__search"
+        placeholder="Nome ou ID"
+        required
+      />
+      <button type="submit" style="display: none">Search</button>
+    </form>
+
+    <div class="buttons">
+      <button (click)="navigate('prev')" class="button btn-prev">
+        Anterior &lt;
+      </button>
+      <button (click)="toggleDetailsVisibility()" class="button btn-detail">
+        Detalhe {{ detailsVisible ? "v" : "^" }}
+      </button>
+      <button (click)="navigate('next')" class="button btn-next">
+        Próximo &gt;
+      </button>
+    </div>
+
+    <div *ngIf="detailsVisible && pokemonDetails" class="pokemon-details">
+      <div class="detalhes">
+        <h3 class="Titulo">Detalhes do Pokémon</h3>
+        <p class="Tipos">Tipos: {{ getTypeNames(pokemonDetails.types) }}</p>
+        <div class="Tamanho">
+          <p>
+            Peso:
+            {{
+              pokemonDetails.weight
+                ? (pokemonDetails.weight / 10 | number : "1.2-2")
+                : "0.00"
+            }}
+            kg
+          </p>
+          <p>
+            Altura:
+            {{
+              pokemonDetails.height
+                ? (pokemonDetails.height / 10 | number : "1.2-2")
+                : "0.00"
+            }}
+            m
+          </p>
+        </div>
+        <div class="Status">
+          <p>HP: {{ getStat(pokemonDetails.stats, "hp") }}</p>
+          <p>Ataque: {{ getStat(pokemonDetails.stats, "attack") }}</p>
+          <p>Defesa: {{ getStat(pokemonDetails.stats, "defense") }}</p>
+          <p>
+            Ataque especial:
+            {{ getStat(pokemonDetails.stats, "special-attack") }}
+          </p>
+          <p>
+            Defesa especial:
+            {{ getStat(pokemonDetails.stats, "special-defense") }}
+          </p>
+          <p>Velocidade: {{ getStat(pokemonDetails.stats, "speed") }}</p>
+          <p>Total de Stats: {{ getTotalStats() }}</p>
+        </div>
+      </div>
+    </div>
+    <img src="assets/pokedex.png" alt="pokedex" class="pokedex" />
+  </main>
+</body>

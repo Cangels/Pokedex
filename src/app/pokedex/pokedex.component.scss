@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&display=swap");
+$Fonte: "Oxanium", cursive;
+$texto-claro: #aaa;
+$texto-escuro: #3a444d;
+$sombra-clara: #888;
+$sombra-escura: #333;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Oxanium', cursive;
-}
-
-body {
-  text-align: center;
-  background: linear-gradient(to bottom, #6ab7f5, #fff);
-  min-height: 100vh;
+  font-family: $Fonte;
 }
 
 main {
@@ -36,41 +35,48 @@ main {
 .pokemon__data {
   position: absolute;
   font-weight: 600;
-  color: #aaa;
+  color: $texto-claro;
   top: 54.5%;
   right: 27%;
   font-size: clamp(8px, 5vw, 25px);
 }
 
+.loading {
+  position: absolute;
+  bottom: 55%;
+  left: 50%;
+  transform: translate(-63%, 50%);
+  height: 18%;
+}
+
 .pokemon__name {
-  color: #3a444d;
+  color: $texto-escuro;
   text-transform: capitalize;
 }
 
-.form {
+form {
   position: absolute;
   width: 65%;
   top: 65%;
   left: 13.5%;
 }
-
 .input__search {
   width: 100%;
   padding: 4%;
   outline: none;
-  border: 2px solid #333;
+  border: 2px solid $texto-escuro;
   border-radius: 5px;
   font-weight: 600;
-  color: #3a444d;
+  color: $texto-escuro;
   font-size: clamp(8px, 5vw, 1rem);
-  box-shadow: -3px 4px 0 #888, -5px 7px 0 #333
+  box-shadow: -3px 4px 0 $sombra-clara, -5px 7px 0 $sombra-escura;
 }
 
 .buttons {
   position: absolute;
-  bottom: 10%;
+  bottom: 12%;
   left: 50%;
-  width: 65%;
+  width: 63%;
   transform: translate(-57%, 0);
   display: flex;
   gap: 20px;
@@ -85,10 +91,68 @@ main {
   font-weight: 600;
   color: white;
   background-color: #444;
-  box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+  box-shadow: -2px 3px 0 $sombra-escura, -4px 6px 0 #000;
+  transition: box-shadow 0.2s ease, font-size 0.1s ease;
+
+  &:active {
+    box-shadow: inset -4px 4px 0 $sombra-escura;
+    font-size: 0.9rem;
+  }
 }
 
-.button:active {
-  box-shadow: inset -4px 4px 0 #222;
-  font-size: 0.9rem;
+.pokemon-details {
+  background-color: rgba(0, 0, 0, 0.79);
+  position: absolute;
+  width: 60.3%;
+  transform: translate(22%, 90%);
+  height: 27%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  font-size: clamp(8px, 5vw, 1rem);
+  box-shadow: -3px 4px 0 $sombra-clara, -5px 7px 0 $sombra-escura;
+  box-shadow: inset -4px 4px 4px $sombra-escura;
+}
+
+.detalhes {
+  position: absolute;
+  transform: translate(0%, 30%);
+  height: 18%;
+}
+
+.Titulo {
+  background-color: $texto-claro;
+  border: 2px solid $texto-escuro;
+  border-radius: 5px;
+  width: 77%;
+  transform: translate(13.5%, 0);
+}
+
+.Tipos {
+  background-color: $texto-claro;
+  border: 2px solid $texto-escuro;
+  border-radius: 5px;
+  width: 70%;
+  transform: translate(20%, 0);
+}
+
+.Tamanho {
+  display: flex;
+  justify-content: space-around;
+  background-color: $texto-claro;
+  border: 2px solid $texto-escuro;
+  border-radius: 5px;
+  width: 90%;
+  transform: translate(5%, 0);
+}
+
+.Status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: $texto-claro;
+  border: 2px solid $texto-escuro;
+  border-radius: 5px;
+  width: 100%;
+  height: 95px;
+  transform: translate(0%, 0);
 }

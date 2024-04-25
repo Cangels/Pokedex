@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+$background-laranja: #eb6912;
+$background-degrade: #fff;
+
+body {
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    $background-laranja,
+    $background-degrade
+  );
+  min-height: 100vh;
+}
